@@ -48,10 +48,15 @@ docker pull shakhawathossen/laptop
 docker run -d -p 8501:8501 shakhawathossen/laptop
 
 
-Command,Description
-docker ps,View running containers
-docker ps -a,View all containers (including stopped)
-docker stop <ID>,Stop a running container
-docker logs <ID>,View application logs
-docker images,View downloaded images
+## 🛠️ Essential Docker Commands
+
+| Command | Description |
+| :--- | :--- |
+| `docker ps` | View all currently **running** containers. |
+| `docker ps -a` | View **all** containers (including stopped/exited ones). |
+| `docker stop <ID>` | Safely **stop** a running container using its ID or Name. |
+| `docker logs <ID>` | Fetch the **logs** of a container (useful for debugging). |
+| `docker images` | List all Docker **images** currently downloaded on your system. |
+| `docker rm <ID>` | **Remove** a stopped container from the list. |
+| `docker rmi <Image_ID>`| **Delete** a specific docker image. |
 
