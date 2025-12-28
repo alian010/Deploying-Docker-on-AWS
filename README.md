@@ -1,22 +1,57 @@
-# Deploying-Docker-on-AWS
-How to deploy Docker containers to AWS
+# 🚀 Deploying Docker on AWS EC2
+
+This repository provides a step-by-step guide on how to deploy a Docker container (specifically a Streamlit/Python app) onto an AWS EC2 instance.
+
+---
+
+## 📋 Prerequisites
+* An **AWS Account**.
+* An **EC2 Instance** (Ubuntu is recommended).
+* Basic knowledge of the terminal.
+
+---
+
+## 🛠️ Step-by-Step Deployment Guide
+
+### 1. Create and Connect to EC2
+* Launch an **EC2 Instance** (T2.micro or higher).
+* Ensure your **Security Group** allows inbound traffic on the port your app uses (e.g., `8000` or `8501`).
+* Connect via SSH:
+  ```bash
+  ssh -i "your-key.pem" ubuntu@your-ec2-public-ip
 
 
 
-1. create an EC2 instance
- 2. Connect to the EC2 instance
+  # Update package list
+sudo apt-get update
 
- 3. Run the following commands
-  a. sudo apt-get update
-  b. sudo apt-get install -y docker.io
-  c. sudo systemctl start docker
-  d. sudo systemctl enable docker
-  e. sudo usermod -aG docker $USER
-  f. exit
- 
- 4. Restart a new connection to EC2 instance
- 5. Run the following commands
-  a. docker pull shakhawathossen/laptop
-  b. docker run -p 8000:8000 shakhawathossen/laptop
+# Install Docker
+sudo apt-get install -y docker.io
 
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Add your user to the docker group (to run docker without 'sudo')
+sudo usermod -aG docker $USER
+
+# Exit the terminal to apply group changes
+exit
+
+
+
+# Pull the image from Docker Hub
+docker pull shakhawathossen/laptop
+
+# Run the container
+# Note: Map the host port to the container port (Host:Container)
+docker run -d -p 8501:8501 shakhawathossen/laptop
+
+
+Command,Description
+docker ps,View running containers
+docker ps -a,View all containers (including stopped)
+docker stop <ID>,Stop a running container
+docker logs <ID>,View application logs
+docker images,View downloaded images
 
